@@ -14,15 +14,8 @@ public class Main {
 			w = new int[n];
 			for (int i = 0; i < n; i++)
 				w[i] = scan.next().length();
-			solve();
-		}
-	}
 
-	void solve() {
-		int index = 0;
-		while (index < n) {
-			int sum = 0;
-			int count = 0;
+			int index = 0, sum = 0, count = 0;
 			int i = index;
 			while (i < n) {
 				sum += w[i++];
@@ -31,11 +24,13 @@ public class Main {
 					count++;
 				} else if (sum > HAIKU[count]) {
 					index++;
-					break;
+					i = index;
+					sum = 0;
+					count = 0;
 				}
 				if (count == HAIKU.length) {
 					System.out.println(index + 1);
-					return;
+					break;
 				}
 			}
 		}

@@ -37,7 +37,7 @@ public class Main {
 					if (field[i][j] != CHECK) {
 						ans++;
 						fruit = field[i][j];
-						bfs(i, j);
+						dfs(i, j);
 					}
 				}
 			}
@@ -45,7 +45,7 @@ public class Main {
 		}
 	}
 
-	void bfs(int y, int x) {
+	void dfs(int y, int x) {
 		if (y < 0 || x < 0 || y >= h || x >= w || field[y][x] != fruit)
 			return;
 		field[y][x] = CHECK;
@@ -54,10 +54,10 @@ public class Main {
 //		for (int i = 0; i < 4; i++)
 //			bfs(y + dy[i], x + dx[i]);
 
-		bfs(y + 0, x + 1);
-		bfs(y + 0, x - 1);
-		bfs(y + 1, x + 0);
-		bfs(y - 1, x + 0);
+		dfs(y + 0, x + 1);
+		dfs(y + 0, x - 1);
+		dfs(y + 1, x + 0);
+		dfs(y - 1, x + 0);
 	}
 
 	public static void main(String[] args) {

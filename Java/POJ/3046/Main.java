@@ -13,6 +13,25 @@ public class Main {
         int[] ants = new int[MAX_T];
         for (int i = 0; i < a; i++)
             ants[scan.nextInt() - 1] += 1;
+//        int[][] dp = new int[MAX_T + 1][MAX_M + 1];
+//        for (int i = 0; i <= t; i++) {
+//            dp[i][0] = 1;
+//        }
+//        for (int i = 0; i < t; i++) {
+//            for (int j = 1; j <= b; j++) {
+//                if (j - 1 - ants[i] >= 0) {
+//                    dp[i + 1][j] = dp[i + 1][j - 1] + dp[i][j] - dp[i][j - 1 - ants[i]];
+//                } else {
+//                    dp[i + 1][j] = dp[i + 1][j - 1] + dp[i][j];
+//                }
+//            }
+//        }
+//        for (int i = 0; i <= t; i++) {
+//            for (int j = 0; j <= a; j++) {
+//                System.out.print(dp[i][j] + " ");
+//            }
+//            System.out.println();
+//        }
         int[][] dp = new int[2][MAX_A + 1];
         for (int i = 0; i < 2; i++)
             dp[i][0] = 1;

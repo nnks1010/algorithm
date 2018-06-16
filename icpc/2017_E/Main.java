@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.util.Stack;
 
-public class E {
+public class Main {
 	final int VAR = 4;
 	final int MAX_LEN = 16;
 	final int PATTERN = 1 << (1 << VAR);
@@ -16,7 +16,6 @@ public class E {
 	}
 
 	void dfs(String exp, int len, int nOpen) {
-		System.out.println(len + ": " + nOpen + " :" + exp);
 		if (nOpen == 0)
 			compute(exp, len);
 		if (len + 4 <= MAX_LEN) {
@@ -113,8 +112,8 @@ public class E {
 	}
 
 	public static void main(String[] args) {
-		E e = new E();
-		e.init();
-		e.run();
+		Main main = new Main();
+		main.init();
+		main.run();
 	}
 }

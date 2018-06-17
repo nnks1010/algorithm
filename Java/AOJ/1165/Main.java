@@ -1,6 +1,14 @@
 import java.util.Scanner;
 
 public class Main {
+	class Pair {
+		int y, x;
+		Pair(int y, int x) {
+			this.y = y;
+			this.x = x;
+		}
+	}
+
 	final int MAX_N = 200;
 	void run() {
 		Scanner scan = new Scanner(System.in);
@@ -12,73 +20,25 @@ public class Main {
 				System.out.println(1 + " " + 1);
 				continue;
 			}
-
-			int[][] map = new int[MAX_N * 2 + 1][MAX_N * 2 + 1];
-			for (int i = 0; i <= MAX_N * 2; i++)
-				for (int j = 0; j <= MAX_N * 2; j++)
-					map[i][j] = -1;
-
-			map[MAX_N][MAX_N] = 0;
-			int[] dy = {  0, 1, 0, -1 };
-			int[] dx = { -1, 0, 1,  0 };
-			for (int k = 1; k < N; k++) {
+			Pair[] pairs = new Pair[N];
+			pairs[0] = new Pair(0, 0);
+			int[] dy = { 0, -1, 0, 1 };
+			int[] dx = { -1, 0, 1, 0 };
+			for (int i = 1; i < N; i++) {
 				int n = scan.nextInt();
 				int d = scan.nextInt();
-				int x = 0, y = 0;
-				for (int i = 0; i <= MAX_N * 2; i++) {
-					for (int j = 0; j <= MAX_N * 2; j++) {
-						if (map[i][j] == n) {
-							y = i;
-							x = j;
-						}
-					}
-				}
-//				System.out.println(y + " " + x);
-				map[y + dy[d]][x + dx[d]] = k;
+				Pair p = pairs[n];
+				pairs[i] = new Pair(p.y + dy[d], p.x + dx[d]);
 			}
-
-
-			int hh = 0;
-			label: for (int i = 0; i <= MAX_N * 2; i++) {
-				for (int j = 0; j <= MAX_N * 2; j++) {
-					if (map[i][j] != -1) {
-						hh = i;
-						break label;
-					}
-				}
+			int max_x = 0, max_y = 0;
+			int min_x = 0, min_y = 0;
+			for (int i = 0; i < N; i++) {
+				max_x = Math.max(max_x, pairs[i].x);
+				max_y = Math.max(max_y, pairs[i].y);
+				min_x = Math.min(min_x, pairs[i].x);
+				min_y = Math.min(min_y, pairs[i].y);
 			}
-			int ll = 0;
-			label: for (int i = MAX_N * 2; i >= 0; i--) {
-				for (int j = MAX_N * 2; j >= 0; j--) {
-					if (map[i][j] != -1) {
-						ll = i;
-						break label;
-					}
-					
-				}
-			}
-
-			int hl = 0;
-			label: for (int j = 0; j <= MAX_N * 2; j++) {
-				for (int i = 0; i <= MAX_N * 2; i++) {
-					if (map[i][j] != -1) {
-						hl = j;
-						break label;
-					}
-				}
-			}
-
-			int lr = 0;
-			label: for (int j = MAX_N * 2; j >= 0; j--) {
-				for (int i = MAX_N * 2; i >= 0; i--) {
-					if (map[i][j] != -1) {
-						lr = j;
-						break label;
-					}
-				}
-			}
-			System.out.println((lr - hl + 1) + " " + (ll - hh + 1));
-			
+			System.out.println((max_x - min_x + 1) + " " + (max_y - min_y + 1));
 		}
 	}
 	public static void main(String[] args) {
